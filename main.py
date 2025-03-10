@@ -1,4 +1,6 @@
 import pygame
+import sys
+import os
 from constants import *
 from player import Player
 from asteroid import Asteroid
@@ -34,6 +36,7 @@ def main():
 
         updateable.update(dt)
 
+
         for asteroid in asteroids:
             if asteroid.collide(player):
                 print("Game over!")
@@ -47,8 +50,12 @@ def main():
 
         screen.fill(pygame.Color("black"))  #prvo očisti ekran
 
+        background = pygame.image.load(os.path.join("assets", "images", "background_space.jpg"))
+        screen.blit(background, (0, 0))
+
         for obj in drawable:                #nacrtaj objekte
             obj.draw(screen)
+
 
         pygame.display.flip()               #osvježi ekran
 

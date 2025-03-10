@@ -10,7 +10,7 @@ class Player(CircleShape):
         self.shoot_timer = 0    #osigurava da igrač ne može stalno pucati.
     
     def draw(self, screen):
-        pygame.draw.polygon(screen, pygame.Color("white"), self.triangle(), 2)
+        pygame.draw.polygon(screen, pygame.Color("darkred"), self.triangle(), 5)
 
     def triangle(self):
         forward = pygame.Vector2(0, 1).rotate(self.rotation)
