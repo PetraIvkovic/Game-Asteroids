@@ -1,14 +1,26 @@
 import pygame
 import random
+import os
+from assets import images
 from constants import *
 from circleshape import CircleShape
 
 class Asteroid(CircleShape):
     def __init__(self, x, y, radius):
         super().__init__(x, y, radius)
+        if radius > 50:
+            self.image = pygame.image.load(os.path.join("assets", "images", "big-asteroid.png"))
+        elif radius > 30:
+            self.image = pygame.image.load(os.path.join("assets", "images", "mid-asteroid.png"))
+        else:
+            self.image = pygame.image.load(os.path.join("assets", "images", "small-asteroid.png"))
+
+        self.image = pygame.transform.scale(self.image, (int(self.radius * 1.5), int(self.radius * 1.5)))
     
     def draw(self, screen):
-        pygame.draw.circle(screen, pygame.Color("black"), self.position, self.radius, 3)
+        #pygame.draw.circle(screen, pygame.Color("black"), self.position, self.radius, 3)
+        asteroid_rect = self.image.get_rect(center=self.position)
+        screen.blit(self.image, asteroid_rect)  #iscrtavanje slike
 
     def update(self, dt):
         self.position += self.velocity * dt
